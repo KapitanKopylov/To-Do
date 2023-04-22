@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <title>To Do List</title>
+    <meta charset="utf-16">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/vk.css'%}">
+    <link rel="stylesheet" href="{% static 'css/light.css'%}" media="(prefers-color-scheme: light)">
+    <link rel="stylesheet" href="{% static 'css/dark.css'%}" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type = "image/ico" href="{% static 'img/apple-touch-icon.png'%}">
+    <link rel="apple-touch-icon-precomposed" href="{% static 'img/apple-touch-icon.png'%}">
+    <link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png'%}">
+  </head>
+  <body>
+    <h1 class="heading">Список задач</h1>
+    <a class="account_button" href="{% url 'account' %}">
+      <button class = 'actions'>Вход</button>
+    </a>
+    <form class="form" method="POST" action="{% url 'add' %}" autocomplete="off">
+      {% csrf_token %}
+      <label class="form__label">Добавь задачу:</label>
+      <input class="form__input" type="text" name="text" id="text" placeholder="Мне надо сделать...">
+      <button class="actions" type="submit">Добавить</button>
+    </form>    
+    <ol class="list">
+      {% for item in items %}
+      {% if item.completed == False %}
+      <div class="False">
+        <li class="list__item">
+          <a class="turn_On" href="{% url 'turn_On' item.item_id %}" type="turn_On"></a>
+          <label class="list__item__text__False" for = "turn_On">{{ item.text }}</label>
+          <a class="ac" href="{% url 'delete' item.item_id %}">Удалить</a>
+        </li>
+      </div>
+      {% endif %}
+      {% endfor %}
+      {% for item in items %}
+      {% if item.completed == True %}
+      <div class="True">
+        <li class="list__item">
+          <a class="turn_Off" href="{% url 'turn_Off' item.item_id %}" type="turn_Off"></a>
+          <label class="list__item__text__True" for = "turn_Off">{{ item.text }}</label>
+          <a class="ac" href="{% url 'delete' item.item_id %}">Удалить</a>
+        </li>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </ol>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <title>To Do List</title>
+    <meta charset="utf-16">
+    <link rel="stylesheet" href="{% static 'css/vk.css'%}">
+    <link rel="stylesheet" href="{% static 'css/light.css'%}" media="(prefers-color-scheme: light)">
+  <link rel="stylesheet" href="{% static 'css/dark.css'%}" media="(prefers-color-scheme: dark)">
+   <link rel="icon" type = "image/ico" href="{% static 'img/apple-touch-icon.png'%}">
+    <link rel="apple-touch-icon-precomposed" href="{% static 'img/apple-touch-icon.png'%}">
+    <link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png'%}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@450&display=swap">
+  </head>
+  <body>
+    <div class="account">
+      <h1 class="heading">Добро пожаловать</h1>
+    </div>
+    <form class="form" method="POST" action="{% url 'add_user' %}">
+      {% csrf_token %}
+      <div class="user_data">
+        <input class="form__input" type="text" name="adress" id="text" placeholder="Ваша почта: ">
+        <input class="form__input" type="password" name="password" id="text" placeholder="Ваш пароль: ">
+        <button class="button_account" type="submit">Войти</button>
+      </div>
+    </form>
+    <a class="back" href="{% url 'index' %}">"Куда я жмал"</a>
+  </body>
+</html>

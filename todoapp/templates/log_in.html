@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <title>To Do List</title>
+    <meta charset="utf-16">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/vk.css'%}">
+    <link rel="stylesheet" href="{% static 'css/light.css'%}" media="(prefers-color-scheme: light)">
+    <link rel="stylesheet" href="{% static 'css/dark.css'%}" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type = "image/ico" href="{% static 'img/apple-touch-icon.png'%}">
+    <link rel="apple-touch-icon-precomposed" href="{% static 'img/apple-touch-icon.png'%}">
+    <link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png'%}">
+  </head>
+  <body>    
+    <a class="log_in_button" href="{% url 'account' %}">
+      <button class = 'log_in' href="{% url 'account' %}">Вход</button>
+    </a>
+    </body>
+</html>

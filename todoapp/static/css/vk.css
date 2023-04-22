@@ -1,0 +1,248 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0px;
+  padding-top: 1vh;
+  padding-bottom: 2vh;
+  padding-left: 2vw; 
+  padding-right: 2vw;
+  background-color: var(--back-color);
+}
+.heading {
+	display: inline-block;
+  margin-top: -0.5vh;
+  margin-bottom: 1vh;
+  font-size: 5vw;
+  color: var(--white-text);
+}
+.form {
+  margin-bottom: 2vh;
+  color: var(--white-text);
+}
+.form__label {
+  display: block;
+  text-decoration: bold;
+  margin-bottom: 2vh;
+  font-size: 4vw;
+  opacity: 0.9;
+}
+.form__input {
+  display: block;
+  width: 95%;
+  height: 7vw;
+  padding-left: 2vw;
+  margin-bottom: 1.5vh;
+  border: 2px solid var(--back-color);
+  border-radius: 7vw;
+  font-size: 4vw;
+  color: var(--white-text);
+  cursor: text;
+  background-color: var(--item-color);
+  transition:  background-color, border-radius, border, 0.3s, 0.3s;
+}
+.form__input:hover,
+.form__input:focus {
+  border: 2px solid var(--back-color);
+  border-radius: 1.5vw;
+}
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.list__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1vw;
+  border-radius: 2vw;
+  background-color: var(--item-color);
+  margin-bottom: 1.5vh;
+}
+.list__item: last-child {
+  margin-bottom: 0;
+}
+.list__item__text__True {
+  flex-grow: 1;
+  font-size: 3vw;
+  line-height: 1.5;
+  color: var(--white-text);
+  width: 74.88015625vw;
+  word-wrap: break-word;
+  text-decoration: line-through;
+  opacity: 0.9;
+}
+
+.list__item__text__False {
+  flex-grow: 1;
+  font-size: 3vw;
+  line-height: 1.5;
+  color: var(--white-text);
+  width: 74.88015625vw;
+  word-wrap: break-word;
+}
+
+.True {
+  opacity: 0.75;
+  }
+.account_button {
+  color: #000;
+  font-size: 2.5vw;
+  display: inline-block;
+  float: right;
+  }
+.account{
+  width: 100%;
+  text-align: center;
+  }
+
+.button_account {  
+  display: inline-block;
+  float: right;
+  padding: 0.5em 0.625em;
+  font-size: 3vw;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  border-radius: 1.5em;
+  border: 1px solid var(--back-color);
+  color: var(--action-button-text-color);
+  background-color: var(--action-button-back-color);
+  transition: background-color, color, border-radius, 0.3s, 0.3s;
+}
+.button_account:hover,
+.button_account:focus,
+.button_account:active {
+  border-radius: 0.5em;
+  color: var(--action-button-text-color-active);
+  background-color: var(--action-button-back-color-active);
+}
+
+.back {
+  display: inline-block;
+  padding: 0.5em 0.5em;
+  font-size: 3vw;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  border-radius: 3em;
+  color: var(--ac-text-color);
+  background-color: var(--ac-back-color);
+  transition:  background-color, color, border-radius, 0.3s, 0.3s;
+  }
+.back:hover,
+.back:focus {
+  border-radius: 0.5em;
+  color: var(--ac-text-color-active);
+  background-color: var(--ac-back-color-active);
+}
+
+.ac {
+  display: inline-block;
+  padding: 0.5em 0.5em;
+  font-size: 3vw;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  border-radius: 1.5em;
+  color: var(--ac-text-color);
+  background-color: var(--ac-back-color);
+  transition:  background-color, color, border-radius, 0.3s, 0.3s;
+}
+.ac:focus,
+.ac:hover,
+.ac:active {
+  border-radius: 0.5em;
+  color: var(--ac-text-color-active);
+  background-color: var(--ac-back-color-active);
+}
+.actions {
+  display: inline-block;
+  padding: 0.5em 0.625em;
+  font-size: 2em;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  border-radius: 1.5em;
+  border: 1px solid var(--back-color);
+  color: var(--action-button-text-color);
+  background-color: var(--action-button-back-color);
+  transition: background-color, color, border-radius, 0.3s, 0.3s;
+}
+.actions:hover,
+.actions:focus,
+.actions:active {
+  border-radius: 0.5em;
+  color: var(--action-button-text-color-active);
+  background-color: var(--action-button-back-color-active);
+}
+
+.turn_On { 
+  width: 2em;
+  height: 2em;
+  border: 0.5em solid var(--ac-text-color);
+  border-radius: 1.5em;
+  margin-right: 0.75vw;
+  cursor: pointer;
+  background-color: var(--item-color);
+  transition: background-color, border-radius, border, 0.3s, 0.3s;
+}
+.turn_On:hover,
+.turn_On:focus,
+.turn_On:active {
+  background-color: var(--item-color-active);
+  border-radius: 1em;
+  border: 0.5em solid var(--ac-text-color-active);
+}
+
+.turn_Off {
+  width: 2em;
+  height: 2em;
+  border: 0.5em solid var(--ac-back-color);
+  background-color: var(--ac-text-color);
+  border-radius: 1.5em;
+  margin-right: 0.75vw;
+  transition:  background-color, border-radius, border, 0.3s, 0.3s;
+}
+.turn_Off:hover,
+.turn_Off:focus,
+.turn_Off:active {
+  background-color: var(--ac-text-color-active);
+  border-radius: 1vw;
+  border: 0.5em solid var(--ac-back-color-active);
+}
+
+.log_in {
+  float: center;
+  display: inline-block;
+  padding: 0.5em 0.625em;
+  font-size: 15vw;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  border-radius: 1.5em;
+  border: 1px solid var(--back-color);
+  color: var(--action-button-text-color);
+  background-color: var(--action-button-back-color);
+  transition: background-color, color, border-radius, 0.3s, 0.3s;
+}
+.log_in:hover,
+.log_in:focus,
+.log_in:active {
+  border-radius: 0.5em;
+  color: var(--action-button-text-color-active);
+  background-color: var(--action-button-back-color-active);
+
+}
+.log_in_button {
+  display: grid;
+  /*place-content: center;*/
+  text-decoration: none;
+}
