@@ -25,7 +25,7 @@
         <input class="switcher__radio switcher__radio--dark" type="radio" name="color-scheme" value='dark' aria-label="Тёмная">
         <div class="switcher__status"></div>
       </fieldset>
-      <a class="account_button" href="{% url 'account' %}">Выход</a>
+      <a class="account_button" href="{% url 'exit' %}">Выход</a>
     </div>
     <form class="form" method="POST" action="{% url 'add' %}" autocomplete="off">
       {% csrf_token %}

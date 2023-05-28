@@ -65,6 +65,9 @@ def add_item(request):
 def account(request):
     return render(request, 'account.html')
 
+def exit(requestre):
+    return redirect('index')
+
 def add_user(request):
 #     if request.method == 'POST':
 #         adress = request.POST.get('adress')

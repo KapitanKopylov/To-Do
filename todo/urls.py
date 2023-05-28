@@ -9,4 +9,5 @@ urlpatterns = [
     path('add_user/', add_user, name = 'add_user'),
     path('turn_On/<item>/', turn_On, name='turn_On'),
     path('turn_Off/<item>/', turn_Off, name='turn_Off'),
+    path('exit/', exit, name = 'exit')
 ]
