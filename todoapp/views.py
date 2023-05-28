@@ -23,7 +23,7 @@ def index(request):
 
     items = TodoItem.objects.all()
     return render(request, 'index.html', {'items': items})
-    return render(request, 'log_in.html')
+    # return render(request, 'log_in.html')
 
 def authentification(request):
     pass
@@ -65,8 +65,8 @@ def add_item(request):
 def account(request):
     return render(request, 'account.html')
 
-def exit(requestre):
-    return redirect('index')
+def exit_user(request):
+    return redirect('log_in')
 
 def add_user(request):
 #     if request.method == 'POST':
@@ -145,3 +145,6 @@ def remove_localstorage(request, key):
         file.write(javascript_code)
 
     return HttpResponse('Data saved to LocalStorage.')
+
+def log_in(request):
+    return render(request, 'log_in.html')

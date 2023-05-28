@@ -19,7 +19,7 @@
     <div class="account">
       <h1 class="heading">Добро пожаловать</h1>
     </div>
-    <form class="form" method="POST" action="{% url 'add_user' %}">
+    <form class="form" method="POST" action="{% url 'index' %}">
       {% csrf_token %}
       <div class="user_data">
         <input class="form__input" type="text" name="adress" id="text" placeholder="Ваша почта: ">
@@ -27,6 +27,6 @@
         <button class="button_account" type="submit">Войти</button>
       </div>
     </form>
-    <a class="back" href="{% url 'index' %}">"Куда я жмал"</a>
+    <a class="back" href="{% url 'log_in' %}">"Куда я жмал"</a>
   </body>
 </html>
