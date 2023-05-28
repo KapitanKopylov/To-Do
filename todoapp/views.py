@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
 from todoapp.models import TodoItem, TodoUsers
-from django.http import HttpResponse
-import json
-
+from django.http import HttpResponse, JsonResponse
+import os
 
 def index(request):
     # if request.COOKIES.get("log_in") == True:
@@ -17,6 +16,10 @@ def index(request):
 
     # print(request.COOKIES[prof])
     # get_cookie(request, prof)
+    key = 'mail'
+    value = 'kopilovnik@gmail.com'
+    remove_localstorage(request, key)
+    save_localstorage(request, key, value)
 
     items = TodoItem.objects.all()
     return render(request, 'index.html', {'items': items})
@@ -26,10 +29,15 @@ def authentification(request):
     pass
 
 def delete(request, item):
-    item_to_delete = TodoItem.objects.get(item_id = item)
-    print(f"Удалено: {item_to_delete.item_id}")
-    item_to_delete.delete()
-    return redirect('index')
+    try:
+        TodoItem.objects.get(item_id = item)
+    except TodoItem.DoesNotExist:
+        return redirect('index')
+    else:
+        item_to_delete = TodoItem.objects.get(item_id = item)
+        print(f"Удалено: {item_to_delete.item_id}")
+        item_to_delete.delete()
+        return redirect('index')
 
 def add_item(request):
     # user = request.user
@@ -41,6 +49,7 @@ def add_item(request):
             except TodoItem.DoesNotExist:
                 item = TodoItem(item_id = text, text = text)
                 item.save()
+                print(f"Добавлено: {request.POST['text']}") 
             else:
                 for i in range(len(TodoItem.objects.all())):
                     try:
@@ -48,10 +57,9 @@ def add_item(request):
                     except TodoItem.DoesNotExist:
                         item = TodoItem(item_id = text + str(i), text = text)
                         item.save()
+                        print(f"Добавлено: {request.POST['text']}") 
                         break
 
-    
-        print(f"Добавлено: {request.POST['text']}") 
     return redirect('index')
 
 def account(request):
@@ -74,28 +82,63 @@ def add_user(request):
     return redirect('index')
 
 def turn_On(request, item):
-    item_to_switch = TodoItem.objects.get(item_id = item)
-    print(f'Выполнено "{item_to_switch.item_id}"')
-    item_to_switch.completed = True
-    item_to_switch.save()
-    return redirect('index')
+    try:
+        TodoItem.objects.get(item_id = item)
+    except TodoItem.DoesNotExist:
+        return redirect('index')
+    else:
+        item_to_switch = TodoItem.objects.get(item_id = item)
+        item_to_switch.completed = True
+        item_to_switch.save()
+        print(f'Выполнено "{item_to_switch.item_id}"')
+        return redirect('index')
 
 def turn_Off(request, item):
-    item_to_switch = TodoItem.objects.get(item_id = item)
-    print(f'Ошибочка, не выполнено "{item_to_switch.item_id}"')
-    item_to_switch.completed = False
-    item_to_switch.save()
-    return redirect('index')
+    try:
+        TodoItem.objects.get(item_id = item)
+    except TodoItem.DoesNotExist:
+        return redirect('index')
+    else:
+        item_to_switch = TodoItem.objects.get(item_id = item)
+        item_to_switch.completed = False
+        item_to_switch.save()
+        print(f'Ошибочка, не выполнено "{item_to_switch.item_id}"')
+        return redirect('index')
 
-# def create_cookie(request):
-#     html = HttpResponse("Welcome to django website")
-#     html.set_cookie('django', "created", max_age = None)
-#     print("created")
-#     return html
 
-# def get_cookie(request):
-#     print("got")
-#     show = request.COOKIES['django']
-#     print(show)
-#     # html = "New Page {0}".format(show)
-#     # return HttpResponse(html)
+def my_view(request):
+    data = {'theme': 'auto'}
+    return render(request, 'index.html', {'data': data})
+
+def save_localstorage(request, key, value):
+    current_directory = os.path.dirname(os.path.abspath(__file__))
+    localstorage_file_path = os.path.join(current_directory, 'static', 'js', 'save_localstorage.js')
+
+    javascript_code = f'''localStorage.setItem('{key}', '{value}');\nconsole.log('{key}',': ', '{value}');'''
+
+    with open(localstorage_file_path, 'w') as file:
+        file.write(javascript_code)
+
+    return HttpResponse('Data saved to LocalStorage.')
+
+def get_localstorage(request, key, value):
+    current_directory = os.path.dirname(os.path.abspath(__file__))
+    localstorage_file_path = os.path.join(current_directory, 'static', 'js', 'remove_localstorage.js')
+
+    javascript_code = f'''return localStorage.getItem('{key}');'''
+
+    with open(localstorage_file_path, 'w') as file:
+        file.write(javascript_code)
+
+    return HttpResponse('Data saved to LocalStorage.')
+
+def remove_localstorage(request, key):
+    current_directory = os.path.dirname(os.path.abspath(__file__))
+    localstorage_file_path = os.path.join(current_directory, 'static', 'js', 'remove_localstorage.js')
+
+    javascript_code = f'''localStorage.removeItem('{key}');'''
+
+    with open(localstorage_file_path, 'w') as file:
+        file.write(javascript_code)
+
+    return HttpResponse('Data saved to LocalStorage.')

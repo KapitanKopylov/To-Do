@@ -1,6 +1,6 @@
 body {
   font-family: 'Roboto', sans-serif;
-  margin: 0px;
+  margin: 0;
   padding-top: 1vh;
   padding-bottom: 2vh;
   padding-left: 2vw; 
@@ -9,7 +9,7 @@ body {
 }
 .heading {
 	display: inline-block;
-  margin-top: -0.5vh;
+  margin-top: -1.5vh;
   margin-bottom: 1vh;
   font-size: 5vw;
   color: var(--white-text);
@@ -27,11 +27,13 @@ body {
 }
 .form__input {
   display: block;
-  width: 95%;
+  width: 97.5%;
   height: 7vw;
+  padding: 0;
   padding-left: 2vw;
   margin-bottom: 1.5vh;
-  border: 2px solid var(--back-color);
+  border: none;
+  border: 0.25vw solid var(--ac-text-color);
   border-radius: 7vw;
   font-size: 4vw;
   color: var(--white-text);
@@ -39,37 +41,40 @@ body {
   background-color: var(--item-color);
   transition:  background-color, border-radius, border, 0.3s, 0.3s;
 }
-.form__input:hover,
-.form__input:focus {
-  border: 2px solid var(--back-color);
+.form__input:hover {
   border-radius: 1.5vw;
 }
+
+.form__input:focus {
+  border-radius: 1.5vw;
+  box-shadow: 0 0 1vw 0.5vw var(--shadow-color);
+}
+
 .list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 .list__item {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   justify-content: space-between;
   align-items: center;
   padding: 1vw;
+  box-shadow: 0 0 0.390625vw 0.15625vw var(--ac-text-color);
   border-radius: 2vw;
   background-color: var(--item-color);
   margin-bottom: 1.5vh;
 }
-.list__item: last-child {
-  margin-bottom: 0;
-}
+
 .list__item__text__True {
   flex-grow: 1;
   font-size: 3vw;
   line-height: 1.5;
   color: var(--white-text);
-  width: 74.88015625vw;
+  cursor: text;
   word-wrap: break-word;
   text-decoration: line-through;
-  opacity: 0.9;
 }
 
 .list__item__text__False {
@@ -77,19 +82,46 @@ body {
   font-size: 3vw;
   line-height: 1.5;
   color: var(--white-text);
-  width: 74.88015625vw;
+  cursor: text;
   word-wrap: break-word;
 }
 
 .True {
   opacity: 0.75;
-  }
+}
+
 .account_button {
-  color: #000;
-  font-size: 2.5vw;
   display: inline-block;
+  padding: 0.5em 0.625em;
+  margin: 0;
+  text-decoration: none;
+  text-align: center;
+  font-size: 4vw;
+  font-weight: 500;
   float: right;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 0.25vw solid var(--back-color);
+  border-radius: 1.5em;
+  outline: none;
+  color: var(--action-button-text-color);
+  background-color: var(--action-button-back-color);
+  transition: background-color, color, border-radius, 0.3s, 0.3s;
   }
+
+.account_button:hover,
+.account_button:active,
+.account_button:focus {
+  border-radius: 0.5em;
+  color: var(--action-button-text-color-active);
+  background-color: var(--action-button-back-color-active);
+}
+
+.account_button:focus-visible{
+  border: 0.25vw solid var(--action-button-text-color-active);
+}
+
 .account{
   width: 100%;
   text-align: center;
@@ -105,7 +137,8 @@ body {
   vertical-align: middle;
   cursor: pointer;
   border-radius: 1.5em;
-  border: 1px solid var(--back-color);
+  border: none;
+  border: 0.25vw solid var(--actions-button-back-color);
   color: var(--action-button-text-color);
   background-color: var(--action-button-back-color);
   transition: background-color, color, border-radius, 0.3s, 0.3s;
@@ -116,6 +149,10 @@ body {
   border-radius: 0.5em;
   color: var(--action-button-text-color-active);
   background-color: var(--action-button-back-color-active);
+}
+
+.button_account:focus-visible {
+  border: 0.25vw solid var(--action-back-button-color-active);
 }
 
 .back {
@@ -148,7 +185,9 @@ body {
   white-space: nowrap;
   vertical-align: middle;
   cursor: pointer;
+  border: 0.25vw solid var(--ac-back-color);
   border-radius: 1.5em;
+  outline: none;
   color: var(--ac-text-color);
   background-color: var(--ac-back-color);
   transition:  background-color, color, border-radius, 0.3s, 0.3s;
@@ -159,17 +198,29 @@ body {
   border-radius: 0.5em;
   color: var(--ac-text-color-active);
   background-color: var(--ac-back-color-active);
+  border: 0.25vw solid var(--ac-back-color-active);
 }
+
+.ac:focus-visible {
+  border-radius: 0.5em;
+  color: var(--ac-text-color-active);
+  background-color: var(--ac-back-color-active);
+  border: 0.25vw solid var(--ac-text-color-active);
+}
+
 .actions {
   display: inline-block;
   padding: 0.5em 0.625em;
   font-size: 2em;
   text-align: center;
+  font-weight: 600;
   white-space: nowrap;
   vertical-align: middle;
   cursor: pointer;
   border-radius: 1.5em;
-  border: 1px solid var(--back-color);
+  border: 0.25vw solid var(--back-color);
+  /*border: 0.25vw solid var(--back-color);*/
+  outline: none;
   color: var(--action-button-text-color);
   background-color: var(--action-button-back-color);
   transition: background-color, color, border-radius, 0.3s, 0.3s;
@@ -182,11 +233,15 @@ body {
   background-color: var(--action-button-back-color-active);
 }
 
-.turn_On { 
-  width: 2em;
-  height: 2em;
+.actions:focus-visible {
+  border: 0.25vw solid var(--action-button-text-color-active);
+}
+
+.turn_On {
+  padding: 1em;
   border: 0.5em solid var(--ac-text-color);
   border-radius: 1.5em;
+  outline: none;
   margin-right: 0.75vw;
   cursor: pointer;
   background-color: var(--item-color);
@@ -201,12 +256,12 @@ body {
 }
 
 .turn_Off {
-  width: 2em;
-  height: 2em;
+  padding: 1em;
   border: 0.5em solid var(--ac-back-color);
-  background-color: var(--ac-text-color);
   border-radius: 1.5em;
+  outline-color: var(--ac-text-color-active);
   margin-right: 0.75vw;
+  background-color: var(--ac-text-color);
   transition:  background-color, border-radius, border, 0.3s, 0.3s;
 }
 .turn_Off:hover,
@@ -228,7 +283,7 @@ body {
   vertical-align: middle;
   cursor: pointer;
   border-radius: 1.5em;
-  border: 1px solid var(--back-color);
+  border: 0.25vw solid var(--back-color);
   color: var(--action-button-text-color);
   background-color: var(--action-button-back-color);
   transition: background-color, color, border-radius, 0.3s, 0.3s;
@@ -243,6 +298,110 @@ body {
 }
 .log_in_button {
   display: grid;
-  /*place-content: center;*/
+  place-content: center;
   text-decoration: none;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  /*padding-left: 1em; */
+  align-items: center;
+}
+
+.switcher {
+  display: grid;
+  position: relative;
+  padding: 0;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 30vw;
+  height: 10vw;
+  background-color: #dfdfdf;
+  border: 0.5vw solid #202020;
+  border-radius: 6vw;
+  margin-left: 0;
+  margin-right: 3vw;
+}
+
+.switcher__legend {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.switcher__radio {
+  -webkit-appearance: none;
+  appearance: none;
+  align-self: center;
+  position: relative;
+  width: 6.25vw;
+  height: 6.25vw;
+  cursor: pointer;
+  /*width: 125px;
+  height: 125px;*/
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 6.25vw;
+  transition: filter 0.1s ease-in;
+}
+
+.switcher__status {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  justify-self: center;
+  z-index: -1;
+  display: inline-block;
+  border: none;
+  border-radius: 6vw;
+  background-repeat: no-repeat;
+  background-size: 8.75vw;
+  background-position: center;
+  background-image: url('../img/chose.svg');
+  transition: background-position 0.1s cubic-bezier(0.65, 0.05, 0.36, 1)
+}
+
+.switcher__radio:focus {
+  outline: none;
+}
+
+.switcher__radio--light {
+  background-image: url('../img/light.svg');
+  justify-self: left;
+  align-self: center;
+  margin: 0;
+  margin-left: 1.875vw;
+}
+
+.switcher__radio--auto {
+  background-image: url('../img/auto.svg');
+  justify-self: center;
+  align-self: center;
+  margin: 0;
+}
+
+.switcher__radio--dark {
+  background-image: url('../img/dark.svg');
+  justify-self: right;
+  align-self: center;
+  margin: 0;
+  margin-right: 1.875vw;
+}
+
+.switcher__radio:focus-visible ~ .switcher__status {
+  box-shadow: 0 0 0.9375vw 0.46875vw #202020;
+}
+
+.switcher__radio--light:checked ~ .switcher__status {
+  background-position: left 0.625vw center;
+}
+
+.switcher__radio--auto:checked ~ .switcher__status {
+  background-position: center center;
+}
+
+.switcher__radio--dark:checked ~ .switcher__status {
+  background-position: right 0.625vw center;
 }

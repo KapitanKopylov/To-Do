@@ -7,24 +7,32 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/vk.css'%}">
     <link rel="stylesheet" href="{% static 'css/light.css'%}" media="(prefers-color-scheme: light)">
     <link rel="stylesheet" href="{% static 'css/dark.css'%}" media="(prefers-color-scheme: dark)">
-    <link rel="icon" type = "image/ico" href="{% static 'img/apple-touch-icon.png'%}">
-    <link rel="apple-touch-icon-precomposed" href="{% static 'img/apple-touch-icon.png'%}">
+    <link rel="stylesheet" href="{% static 'css/vk.css'%}">
+    <link rel="icon" type = "image/svg" href="{% static 'img/icon.svg'%}">
+    <link rel="favicon" type = "image/ico" href="{% static 'img/favicon.ico'%}">
+    <link rel="apple-touch-icon-precomposed" href="{% static 'img/apple-touch-icon-precomposed.png'%}">
     <link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png'%}">
   </head>
   <body>
+    <div class="header">
     <h1 class="heading">Список задач</h1>
-    <a class="account_button" href="{% url 'account' %}">
-      <button class = 'actions'>Вход</button>
-    </a>
+      <fieldset class="switcher">
+        <legend class="switcher__legend">Цветовая Схема</legend>
+        <input class="switcher__radio switcher__radio--light" type="radio" name="color-scheme" value='light' aria-label="Светлая">
+        <input class="switcher__radio switcher__radio--auto" type="radio" name="color-scheme" value='auto'  aria-label="Системная" checked>
+        <input class="switcher__radio switcher__radio--dark" type="radio" name="color-scheme" value='dark' aria-label="Тёмная">
+        <div class="switcher__status"></div>
+      </fieldset>
+      <a class="account_button" href="{% url 'account' %}">Выход</a>
+    </div>
     <form class="form" method="POST" action="{% url 'add' %}" autocomplete="off">
       {% csrf_token %}
       <label class="form__label">Добавь задачу:</label>
       <input class="form__input" type="text" name="text" id="text" placeholder="Мне надо сделать...">
       <button class="actions" type="submit">Добавить</button>
-    </form>    
+    </form>
     <ol class="list">
       {% for item in items %}
       {% if item.completed == False %}
@@ -49,5 +57,8 @@
       {% endif %}
       {% endfor %}
     </ol>
+    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/save_localstorage.js' %}"></script>
+    <script src="{% static 'js/remove_localstorage.js' %}"></script>
   </body>
 </html>

@@ -11,4 +11,21 @@
 	--ac-text-color-active: #04210f;
 	--ac-back-color: #c3eed0;
 	--ac-back-color-active: #add1b7;
+	--shadow-color: #1f1f1f1e;
+}
+
+.switcher {
+	filter: invert(0);
+}
+
+.switcher__radio {
+	filter: invert(0);
+}
+
+.switcher__radio:checked {
+	filter: invert(1);
+}
+
+.switcher__status {
+	filter: invert(0);
 }
