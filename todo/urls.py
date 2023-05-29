@@ -10,5 +10,5 @@ urlpatterns = [
     path('turn_On/<item>/', turn_On, name='turn_On'),
     path('turn_Off/<item>/', turn_Off, name='turn_Off'),
     path('exit_user', exit_user, name = 'exit_user'),
-  	path('index/', index, name='index'),
+    path('index/', index, name='index'),
 ]

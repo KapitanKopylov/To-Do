@@ -1,7 +1,7 @@
 body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
-  padding-top: 1vh;
+  padding-top: 2vh;
   padding-bottom: 2vh;
   padding-left: 2vw; 
   padding-right: 2vw;
@@ -272,20 +272,29 @@ body {
   border: 0.5em solid var(--ac-back-color-active);
 }
 
+.log_in_button {
+  display: flex;
+  /*margin-top: -7vh;*/
+  height: 97vh;
+  /*width: 100%;*/
+  justify-content: center;
+  align-items: center;
+}
+
 .log_in {
-  float: center;
   display: inline-block;
   padding: 0.5em 0.625em;
   font-size: 15vw;
   text-align: center;
   text-decoration: none;
+  /*align-self: center;*/
   white-space: nowrap;
-  vertical-align: middle;
+  /*vertical-align: middle;*/
   cursor: pointer;
-  border-radius: 1.5em;
-  border: 0.25vw solid var(--back-color);
   color: var(--action-button-text-color);
   background-color: var(--action-button-back-color);
+  border: 0.25vw solid var(--back-color);
+  border-radius: 1.5em;
   transition: background-color, color, border-radius, 0.3s, 0.3s;
 }
 .log_in:hover,
@@ -295,11 +304,6 @@ body {
   color: var(--action-button-text-color-active);
   background-color: var(--action-button-back-color-active);
 
-}
-.log_in_button {
-  display: grid;
-  place-content: center;
-  text-decoration: none;
 }
 
 .header {
