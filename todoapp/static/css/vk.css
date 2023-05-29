@@ -274,9 +274,7 @@ body {
 
 .log_in_button {
   display: flex;
-  /*margin-top: -7vh;*/
   height: 97vh;
-  /*width: 100%;*/
   justify-content: center;
   align-items: center;
 }
@@ -287,9 +285,7 @@ body {
   font-size: 15vw;
   text-align: center;
   text-decoration: none;
-  /*align-self: center;*/
   white-space: nowrap;
-  /*vertical-align: middle;*/
   cursor: pointer;
   color: var(--action-button-text-color);
   background-color: var(--action-button-back-color);
@@ -303,7 +299,10 @@ body {
   border-radius: 0.5em;
   color: var(--action-button-text-color-active);
   background-color: var(--action-button-back-color-active);
+}
 
+.log_in:focus-visible {
+  border: 0.25vw solid var(--action-button-text-color-active);
 }
 
 .header {
