@@ -111,7 +111,7 @@ body {
   vertical-align: middle;
   cursor: pointer;
   border: 0.5vh solid var(--back-color);
-  border-radius: 1.5vw;
+  border-radius: 10vw;
   outline: none;
   color: var(--action-button-text-color);
   background-color: var(--action-button-back-color);
