@@ -158,10 +158,11 @@ body {
   border-radius: 0.5em;
   color: var(--ac-text-color-active);
   background-color: var(--ac-back-color-active);
+  border: 0.25vw solid var(--ac-back-color-active);
 }
 
 .button_account:focus-visible {
-  border: 0.25vw solid var(--ac-back-color-active);
+  border: 0.25vw solid var(--ac-text-color-active);
 }
 
 .back {
