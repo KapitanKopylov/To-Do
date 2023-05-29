@@ -70,7 +70,7 @@ body {
   align-items: center;
   padding: 1vw;
   box-shadow: 0 0 0.390625vw 0.15625vw var(--ac-text-color);
-  border-radius: 5vh;
+  border-radius: 5vw;
   background-color: var(--item-color);
   margin-bottom: 1.5vw;
 }
