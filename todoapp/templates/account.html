@@ -16,9 +16,7 @@
     <link rel="apple-touch-icon" href="{% static 'img/icon.png'%}">
   </head>
   <body>
-    <div class="account">
-      <h1 class="heading">Добро пожаловать</h1>
-    </div>
+    <div class="heading">Добро пожаловать</div>
     <form class="form" method="POST" action="{% url 'index' %}">
       {% csrf_token %}
       <div class="user_data">
