@@ -70,7 +70,7 @@ body {
   align-items: center;
   padding: 1vw;
   box-shadow: 0 0 0.390625vw 0.15625vw var(--ac-text-color);
-  border-radius: 5vw;
+  border-radius: 2.5vw;
   background-color: var(--item-color);
   margin-bottom: 1.5vw;
 }
@@ -111,7 +111,7 @@ body {
   vertical-align: middle;
   cursor: pointer;
   border: 0.5vh solid var(--back-color);
-  border-radius: 1.5em;
+  border-radius: 1.5vw;
   outline: none;
   color: var(--action-button-text-color);
   background-color: var(--action-button-back-color);
