@@ -18,8 +18,8 @@ def index(request):
     # get_cookie(request, prof)
     key = 'mail'
     value = 'kopilovnik@gmail.com'
-    remove_localstorage(request, key)
-    save_localstorage(request, key, value)
+    # remove_localstorage(request, key)
+    # save_localstorage(request, key, value)
 
     items = TodoItem.objects.all()
     return render(request, 'index.html', {'items': items})
