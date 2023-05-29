@@ -330,6 +330,7 @@ body {
 
 .switcher__radio:focus {
   outline: none;
+  transition: box-shadow 0.1s cubic-bezier(0.65, 0.05, 0.36, 1)
 }
 
 .switcher__radio--light {
