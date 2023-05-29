@@ -66,7 +66,8 @@ def account(request):
     return render(request, 'account.html')
 
 def exit_user(request):
-    return redirect('log_in')
+    # return redirect('log_in')
+    return redirect('account')
 
 def add_user(request):
 #     if request.method == 'POST':
@@ -146,5 +147,5 @@ def remove_localstorage(request, key):
 
     return HttpResponse('Data saved to LocalStorage.')
 
-def log_in(request):
-    return render(request, 'log_in.html')
+# def log_in(request):
+#     return render(request, 'log_in.html')

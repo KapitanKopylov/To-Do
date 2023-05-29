@@ -105,7 +105,7 @@ body {
   margin: 0;
   text-decoration: none;
   text-align: center;
-  font-size: 4vw;
+  font-size: 3vw;
   font-weight: 500;
   float: right;
   white-space: nowrap;
@@ -147,21 +147,21 @@ body {
   cursor: pointer;
   border-radius: 1.5em;
   border: none;
-  border: 0.25vw solid var(--actions-button-back-color);
-  color: var(--action-button-text-color);
-  background-color: var(--action-button-back-color);
+  border: 0.25vw solid var(--ac-back-color);
+  color: var(--ac-text-color);
+  background-color: var(--ac-back-color);
   transition: background-color, color, border-radius, 0.3s, 0.3s;
 }
 .button_account:hover,
 .button_account:focus,
 .button_account:active {
   border-radius: 0.5em;
-  color: var(--action-button-text-color-active);
-  background-color: var(--action-button-back-color-active);
+  color: var(--ac-text-color-active);
+  background-color: var(--ac-back-color-active);
 }
 
 .button_account:focus-visible {
-  border: 0.25vw solid var(--action-back-button-color-active);
+  border: 0.25vw solid var(--ac-back-color-active);
 }
 
 .back {
