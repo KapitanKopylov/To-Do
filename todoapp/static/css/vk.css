@@ -282,7 +282,8 @@ body {
   grid-template-columns: 1fr 1fr 1fr;
   width: 30vw;
   height: 10vw;
-  background-color: #dfdfdf;
+  /*background-color: #dfdfdf;*/
+  background-color: tomato;
   border: 0.5vw solid #202020;
   border-radius: 6vw;
   margin-left: 0;
