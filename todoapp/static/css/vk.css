@@ -374,5 +374,5 @@ body {
 
 .legging{
   display: grid;
-  grid-auto-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
 }
