@@ -22,6 +22,13 @@
       <div class="user_data">
         <input class="form__input" type="text" name="adress" id="text" placeholder="Ваша почта: ">
         <input class="form__input" type="password" name="password" id="text" placeholder="Ваш пароль: ">
+        <fieldset class="switcher">
+          <legend class="switcher__legend">Цветовая Схема</legend>
+          <input class="switcher__radio switcher__radio--light" type="radio" name="color-scheme" value='light' aria-label="Светлая">
+          <input class="switcher__radio switcher__radio--auto" type="radio" name="color-scheme" value='auto'  aria-label="Системная" checked>
+          <input class="switcher__radio switcher__radio--dark" type="radio" name="color-scheme" value='dark' aria-label="Тёмная">
+          <div class="switcher__status"></div>
+        </fieldset>
         <button class="button_account" type="submit">Войти</button>
       </div>
     </form>
