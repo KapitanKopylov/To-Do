@@ -270,7 +270,7 @@ body {
 .header {
   display: grid;
   grid-template-columns: 1fr auto auto;
-  /*padding-left: 1em; */
+  padding-left: 1em; 
   align-items: center;
 }
 
