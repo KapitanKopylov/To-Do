@@ -1,55 +1,85 @@
 from django.shortcuts import render, redirect
 from todoapp.models import TodoItem, TodoUsers
 from django.http import HttpResponse, JsonResponse
-import os
+import json
 
-def index(request):
-    # if request.COOKIES.get("log_in") == True:
-    #     adress = request.COOKIES.get("adress")
-    #     password = request.COOKIES.get("password")
-    #     items = [TodoItem.objects.get(mail = adress, password = password)]
-    #     return render(request, 'index.html', {'items': items})
-    # else:
-    #     return render(request, 'log_in.html')
-    # print(prof)
-    # create_cookie(request, prof, "Hello World")
+mail = ''
+password = ''
 
-    # print(request.COOKIES[prof])
-    # get_cookie(request, prof)
-    key = 'mail'
-    value = 'kopilovnik@gmail.com'
-    # remove_localstorage(request, key)
-    # save_localstorage(request, key, value)
-
-    items = TodoItem.objects.all()
-    return render(request, 'index.html', {'items': items})
-    # return render(request, 'log_in.html')
-
-def authentification(request):
+def main(request):
     pass
 
-def delete(request, item):
-    try:
-        TodoItem.objects.get(item_id = item)
-    except TodoItem.DoesNotExist:
-        return redirect('index')
+def account(request):
+    return render(request, 'account.html')
+
+def authentification(request):
+    global mail
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body.decode('utf-8'))
+            mail = data.get('mail')
+            password = data.get('password')
+            print("success")
+            # return redirect('index')
+            return JsonResponse({'message': "success"}, content_type="application/json", status=200)
+        except json.JSONDecodeError:
+            print("We have some problem")
+            return HttpResponse(json.dumps({"error": "Invalid data"}), content_type="application/json", status = 400)
     else:
-        item_to_delete = TodoItem.objects.get(item_id = item)
-        print(f"Удалено: {item_to_delete.item_id}")
-        item_to_delete.delete()
-        return redirect('index')
+        return HttpResponse(json.dumps({"error": "Invalid request"}), content_type="application/json", status = 400)
+
+
+def add_user(request):
+    # if request.method == 'POST':
+    #     adress = request.POST.get('adress')
+    #     password = request.POST.get('password')
+    #     try:
+    #         TodoUsers.objects.get(mail = adress)
+    #     except TodoUsers.DoesNotExist:
+    #         User = TodoUsers(mail = adress, password = password)
+    #         User.save()
+        
+    return redirect('index')
+
+def index(request):
+    # print('index')
+    # global mail
+    # print(mail)
+
+    # if request.method == "POST":
+        # try:
+            # data = json.loads(request.body.decode('utf-8'))
+    #         mail = data.get('mail')
+    #         password = data.get('password')
+    #         items = TodoItem.objects.filter(mail=mail)
+    #         print('ok')
+    #         # return render(request, 'index.html', {'items': items})
+    #         # render(request, 'index.html', {'items': items})
+    #         # return redirect('index')
+    #         return HttpResponse(content_type="application/json", status = 200)
+    #     except json.JSONDecodeError:
+    #         print("We have some problem")
+    #         return HttpResponse(json.dumps({"error": "Invalid data"}), content_type="application/json", status = 400)
+    # else:
+    #     return HttpResponse(json.dumps({"error": "Invalid request"}), content_type="application/json", status = 400)
+    items = TodoItem.objects.all()
+    return render(request, 'index.html', {'items': items})
 
 def add_item(request):
+    global mail
     # user = request.user
     if request.method == 'POST':
         text = request.POST['text']
+        if "7" in text:
+            text = text.replace("7", "семь")
+        text = text[0].upper() + text[1:]
         if text.strip():
             try:
                 TodoItem.objects.get(item_id = text)
             except TodoItem.DoesNotExist:
-                item = TodoItem(item_id = text, text = text)
+                item = TodoItem(item_id = text, text = text, mail = mail)
                 item.save()
-                print(f"Добавлено: {request.POST['text']}") 
+                print(f"Добавлено: {request.POST['text']}, в аккаунт: {mail}") 
             else:
                 for i in range(len(TodoItem.objects.all())):
                     try:
@@ -62,90 +92,37 @@ def add_item(request):
 
     return redirect('index')
 
-def account(request):
-    return render(request, 'account.html')
-
-def exit_user(request):
-    # return redirect('log_in')
-    return redirect('account')
-
-def add_user(request):
-#     if request.method == 'POST':
-#         adress = request.POST.get('adress')
-#         password = request.POST.get('password')
-#         try:
-#             TodoUsers.objects.get(mail = adress)
-#         except TodoUsers.DoesNotExist:
-#             User = TodoUsers(mail = adress, password = password)
-#             User.save()
-        
-#         create_cookie("log_in", True)
-#         create_cookie("adress", adress)
-#         create_cookie("password", password)
-
-    return redirect('index')
+def delete(request, item):
+    try:
+        TodoItem.objects.get(item_id = item)
+    except TodoItem.DoesNotExist:
+        print("Item DoesN't Exist")
+    else:
+        item_to_delete = TodoItem.objects.get(item_id = item)
+        print(f"Удалено: {item_to_delete.item_id}")
+        item_to_delete.delete()
+    return HttpResponse(content_type="application/json", status = 200)
 
 def turn_On(request, item):
     try:
         TodoItem.objects.get(item_id = item)
     except TodoItem.DoesNotExist:
-        return redirect('index')
+        print("Item DoesN't Exist")
     else:
         item_to_switch = TodoItem.objects.get(item_id = item)
         item_to_switch.completed = True
         item_to_switch.save()
         print(f'Выполнено "{item_to_switch.item_id}"')
-        return redirect('index')
+    return HttpResponse(content_type="application/json", status = 200)
 
 def turn_Off(request, item):
     try:
         TodoItem.objects.get(item_id = item)
     except TodoItem.DoesNotExist:
-        return redirect('index')
+        print("Item DoesN't Exist")
     else:
         item_to_switch = TodoItem.objects.get(item_id = item)
         item_to_switch.completed = False
         item_to_switch.save()
         print(f'Ошибочка, не выполнено "{item_to_switch.item_id}"')
-        return redirect('index')
-
-
-def my_view(request):
-    data = {'theme': 'auto'}
-    return render(request, 'index.html', {'data': data})
-
-def save_localstorage(request, key, value):
-    current_directory = os.path.dirname(os.path.abspath(__file__))
-    localstorage_file_path = os.path.join(current_directory, 'static', 'js', 'save_localstorage.js')
-
-    javascript_code = f'''localStorage.setItem('{key}', '{value}');\nconsole.log('{key}',': ', '{value}');'''
-
-    with open(localstorage_file_path, 'w') as file:
-        file.write(javascript_code)
-
-    return HttpResponse('Data saved to LocalStorage.')
-
-def get_localstorage(request, key, value):
-    current_directory = os.path.dirname(os.path.abspath(__file__))
-    localstorage_file_path = os.path.join(current_directory, 'static', 'js', 'remove_localstorage.js')
-
-    javascript_code = f'''return localStorage.getItem('{key}');'''
-
-    with open(localstorage_file_path, 'w') as file:
-        file.write(javascript_code)
-
-    return HttpResponse('Data saved to LocalStorage.')
-
-def remove_localstorage(request, key):
-    current_directory = os.path.dirname(os.path.abspath(__file__))
-    localstorage_file_path = os.path.join(current_directory, 'static', 'js', 'remove_localstorage.js')
-
-    javascript_code = f'''localStorage.removeItem('{key}');'''
-
-    with open(localstorage_file_path, 'w') as file:
-        file.write(javascript_code)
-
-    return HttpResponse('Data saved to LocalStorage.')
-
-# def log_in(request):
-#     return render(request, 'log_in.html')
+    return HttpResponse(content_type="application/json", status = 200)

@@ -14,6 +14,7 @@
     <link rel="favicon" type = "image/ico" href="{% static 'img/favicon.ico'%}">
     <link rel="apple-touch-icon-precomposed" href="{% static 'img/apple-touch-icon-precomposed.png'%}">
     <link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png'%}">
+    <!-- <script src="{% static 'js/auth.js' %}"></script> -->
   </head>
   <body>
     <div class="header">
@@ -25,11 +26,11 @@
         <input class="switcher__radio switcher__radio--dark" type="radio" name="color-scheme" value='dark' aria-label="Тёмная">
         <div class="switcher__status"></div>
       </fieldset>
-      <a class="account_button" href="{% url 'exit_user' %}">Выход</a>
+      <button class="account_button" name="account_button">Выход</button>
     </div>
     <form class="form" method="POST" action="{% url 'add' %}" autocomplete="off">
       {% csrf_token %}
-      <label class="form__label">Добавь задачу:</label>
+      <label class="form__label" for = "text">Добавь задачу:</label>
       <input class="form__input" type="text" name="text" id="text" placeholder="Мне надо сделать...">
       <button class="actions" type="submit">Добавить</button>
     </form>
@@ -38,9 +39,9 @@
       {% if item.completed == False %}
       <div class="False">
         <li class="list__item">
-          <a class="turn_On" href="{% url 'turn_On' item.item_id %}" type="turn_On"></a>
+          <button class="turn_On" id = "turn_On" name = "{{ item.item_id }}"></button>
           <label class="list__item__text__False" for = "turn_On">{{ item.text }}</label>
-          <a class="ac" href="{% url 'delete' item.item_id %}">Удалить</a>
+          <button class="ac" id = "delete" name = "{{ item.item_id }}">Удалить</button>
         </li>
       </div>
       {% endif %}
@@ -49,14 +50,16 @@
       {% if item.completed == True %}
       <div class="True">
         <li class="list__item">
-          <a class="turn_Off" href="{% url 'turn_Off' item.item_id %}" type="turn_Off"></a>
+          <button class="turn_Off" id = "turn_Off" name = "{{ item.item_id }}"></button>
           <label class="list__item__text__True" for = "turn_Off">{{ item.text }}</label>
-          <a class="ac" href="{% url 'delete' item.item_id %}">Удалить</a>
+          <button class="ac" id = "delete" name = "{{ item.item_id }}">Удалить</button>
         </li>
       </div>
       {% endif %}
       {% endfor %}
     </ol>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/colorscheme.js' %}"></script>
   </body>
 </html>

@@ -17,12 +17,13 @@
   </head>
   <body>
     <div class="heading">Добро пожаловать</div>
-    <form class="form" method="POST" action="{% url 'index' %}">
+    <div class="form">
       {% csrf_token %}
       <div class="user_data">
-        <input class="form__input" type="text" name="adress" id="text" placeholder="Ваша почта: ">
-        <input class="form__input" type="password" name="password" id="text" placeholder="Ваш пароль: ">
+        <input class="form__input" type="text" id="mail" placeholder="Ваша почта: " tabindex="1">
+        <input class="form__input" type="password" id="password" placeholder="Ваш пароль: " tabindex="2">
         <div class="Legging">
+          <button class="login" type="submit" name="login" tabindex="3">Войти</button>
           <fieldset class="switcher">
             <legend class="switcher__legend">Цветовая Схема</legend>
             <input class="switcher__radio switcher__radio--light" type="radio" name="color-scheme" value='light' aria-label="Светлая">
@@ -30,10 +31,11 @@
             <input class="switcher__radio switcher__radio--dark" type="radio" name="color-scheme" value='dark' aria-label="Тёмная">
             <div class="switcher__status"></div>
           </fieldset>
-          <button class="button_account" type="submit">Войти</button>
         </div>
       </div>
-    </form>
-    <script src="{% static 'js/index.js' %}"></script>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'js/colorscheme.js' %}"></script>
+    <script src="{% static 'js/account.js' %}"></script>
   </body>
 </html>
